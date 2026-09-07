@@ -37,5 +37,6 @@
     }
   ],
   "trailingSlash": true,
-  "cleanUrls": false
+  "cleanUrls": false,
+  "outputDirectory": "."
 }
