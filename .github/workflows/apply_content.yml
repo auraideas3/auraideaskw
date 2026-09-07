@@ -1,0 +1,35 @@
+name: Apply prepared site update
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/apply_content.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Download prepared content
+        run: curl -L --fail --retry 3 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663861390937/WuUucDUypiYONDNK.zip' -o /tmp/aura-content.zip
+      - name: Apply content
+        run: |
+          rm -rf /tmp/aura-content
+          mkdir -p /tmp/aura-content
+          unzip -q /tmp/aura-content.zip -d /tmp/aura-content
+          rsync -a --exclude='.git/' /tmp/aura-content/ ./
+          rm -f apply_content.yml
+      - name: Commit and push
+        run: |
+          git config user.name 'auraideas3'
+          git config user.email 'auraideas3@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet || git commit -m 'Expand blog articles and improve services navigation'
+          git push
