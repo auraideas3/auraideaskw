@@ -1,0 +1,5 @@
+# Unused backups and local archives
+*.bak.*
+*.zip
+.git
+node_modules

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /wp-admin/
 Disallow: /wp-login.php
-Sitemap: https://www.auraideaskw.com/sitemap.xml
+Sitemap: /sitemap.xml

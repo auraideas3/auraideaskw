@@ -35,5 +35,7 @@
       "destination": "/2025/12/28/%D8%A8%D8%B1%D9%88%D8%A8%D9%88%D8%B2%D8%A7%D9%84/",
       "permanent": true
     }
-  ]
+  ],
+  "trailingSlash": true,
+  "cleanUrls": false
 }
