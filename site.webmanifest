@@ -1,15 +1,20 @@
 {
-  "name": "Aura Ideas | أورا للأفكار",
-  "short_name": "Aura Ideas",
-  "description": "خدمات أكاديمية ودعم البحث العلمي للطلاب والباحثين في الإمارات والخليج.",
-  "lang": "ar",
+  "name": "أورا للأفكار | خدمات أكاديمية في الكويت",
+  "short_name": "أورا للأفكار",
+  "description": "خدمات أكاديمية للطلاب والباحثين في الكويت",
+  "lang": "ar-KW",
   "dir": "rtl",
   "start_url": "/",
-  "display": "standalone",
-  "background_color": "#f7f1e8",
-  "theme_color": "#125b50",
+  "scope": "/",
+  "display": "website",
+  "theme_color": "#0b5570",
+  "background_color": "#ffffff",
   "icons": [
-    {"src": "/logo.png", "sizes": "1563x1563", "type": "image/png", "purpose": "any maskable"},
-    {"src": "/favicon.ico", "sizes": "16x16 32x32 48x48 64x64", "type": "image/x-icon"}
+    {
+      "src": "/logo.png",
+      "sizes": "1563x1563",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
