@@ -11,8 +11,8 @@
   "background_color": "#ffffff",
   "icons": [
     {
-      "src": "/logo.png",
-      "sizes": "1563x1563",
+      "src": "/logo-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
