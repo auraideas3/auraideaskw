@@ -1,0 +1,37 @@
+name: Apply reference homepage
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/apply_reference_home.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Download prepared homepage package
+        run: curl -L --fail --retry 3 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663861390937/tNMphQhNkmJIbGhe.zip' -o /tmp/reference-home-package.zip
+      - name: Apply reference homepage
+        run: |
+          rm -rf /tmp/reference-home-package
+          mkdir -p /tmp/reference-home-package
+          unzip -q /tmp/reference-home-package.zip -d /tmp/reference-home-package
+          cp /tmp/reference-home-package/index.html ./index.html
+          rm -f apply_reference_home.yml
+      - name: Commit and push
+        run: |
+          git config user.name 'auraideas3'
+          git config user.email 'auraideas3@users.noreply.github.com'
+          git add index.html apply_reference_home.yml
+          git diff --cached --quiet || git commit -m 'Restore reference Kuwait homepage design'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
