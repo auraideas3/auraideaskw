@@ -1,0 +1,54 @@
+name: Restore Google verification meta
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/restore_google_verification.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore verification tag only if missing
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          tag = '<meta name="google-site-verification" content="Y1_tns68j0XSbDUUFEqeQJGmR7WTLcCdA66Koav-d1c">'
+          if 'google-site-verification' not in s:
+              marker = '</head>'
+              if marker not in s:
+                  raise SystemExit('index.html has no closing head tag')
+              s = s.replace(marker, f'  {tag}\n{marker}', 1)
+              p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit if changed
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet || git commit -m 'Restore Google verification meta tag'
+          git diff --cached --quiet || git push
+          git status --short
+      - name: Remove workflow after successful run
+        if: success()
+        shell: bash
+        run: |
+          rm -f .github/workflows/restore_google_verification.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u .github/workflows/restore_google_verification.yml
+          git diff --cached --quiet || git commit -m 'Remove temporary verification workflow'
+          git diff --cached --quiet || git push
+          true
+      - name: Keep workflow if cleanup could not commit
+        if: always()
+        run: true
+      
