@@ -1,0 +1,41 @@
+name: Apply contact widget and WhatsApp
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/apply_contact_widget.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Download prepared contact widget package
+        run: curl -L --fail --retry 3 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663861390937/eOEvbjqosaCzfCVg.zip' -o /tmp/aura-contact-package.zip
+      - name: Apply contact widget package
+        run: |
+          rm -rf /tmp/aura-contact-package
+          mkdir -p /tmp/aura-contact-package
+          unzip -q /tmp/aura-contact-package.zip -d /tmp/aura-contact-package
+          rsync -a --exclude='.git/' /tmp/aura-contact-package/ ./
+          rm -f apply_contact_widget.yml
+      - name: Commit and push
+        run: |
+          git config user.name 'auraideas3'
+          git config user.email 'auraideas3@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet || git commit -m 'Add animated WhatsApp contact widget'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  contents: write
+
