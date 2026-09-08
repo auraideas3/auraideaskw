@@ -1,0 +1,35 @@
+name: Apply clean sitemap
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/apply_sitemap_clean.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Download sitemap package
+        run: curl -L --fail --retry 3 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663861390937/cUMQyCUDRhSszELE.zip' -o /tmp/sitemap-clean.zip
+      - name: Apply clean sitemap and llms file
+        run: |
+          rm -rf /tmp/sitemap-clean
+          unzip -q /tmp/sitemap-clean.zip -d /tmp/sitemap-clean
+          cp /tmp/sitemap-clean/sitemap.xml ./sitemap.xml
+          cp /tmp/sitemap-clean/llms.txt ./llms.txt
+          rm -f .github/workflows/apply_sitemap_clean.yml
+      - name: Commit and push
+        run: |
+          git config user.name 'auraideas3'
+          git config user.email 'auraideas3@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet || git commit -m 'Clean sitemap and Kuwait AI discovery metadata'
+          git push
