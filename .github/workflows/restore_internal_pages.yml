@@ -1,0 +1,41 @@
+name: Restore internal pages safely
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/restore_internal_pages.yml'
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Download safe restore package
+        run: curl -L --fail --retry 3 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663861390937/bxeyoLQNJWuxxCRP.zip' -o /tmp/aura-pages-safe-restore.zip
+      - name: Restore internal pages
+        run: |
+          rm -rf /tmp/aura-pages-safe-restore
+          mkdir -p /tmp/aura-pages-safe-restore
+          unzip -q /tmp/aura-pages-safe-restore.zip -d /tmp/aura-pages-safe-restore
+          find /tmp/aura-pages-safe-restore -type f -name '*.html' -print0 | while IFS= read -r -d '' f; do
+            rel="${f#/tmp/aura-pages-safe-restore/}"
+            if [ "$rel" != "index.html" ]; then
+              mkdir -p "$(dirname "$rel")"
+              cp "$f" "$rel"
+            fi
+          done
+          rm -f site-reference.css
+          rm -f .github/workflows/apply_all_pages.yml .github/workflows/auraideaskw-all-pages.yml .github/workflows/restore_internal_pages.yml
+      - name: Commit and push
+        run: |
+          git config user.name 'auraideas3'
+          git config user.email 'auraideas3@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet || git commit -m 'Restore internal pages without changing homepage reference design'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
