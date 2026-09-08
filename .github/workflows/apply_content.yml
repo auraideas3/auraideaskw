@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Download prepared content
-        run: curl -L --fail --retry 3 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663861390937/yJojTTNrJYZOcRmL.zip' -o /tmp/aura-content.zip
+        run: curl -L --fail --retry 3 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663861390937/XUPfyMSJTRvAbAzc.zip' -o /tmp/aura-content.zip
       - name: Apply content
         run: |
           rm -rf /tmp/aura-content
