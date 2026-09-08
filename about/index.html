@@ -39,475 +39,339 @@
     }
   </script>
 
-  <!-- Aura Original Header & Global CSS -->
+  <!-- Aura United Header & Global CSS (from auraideaskw.com) -->
   <style>
     :root {
-      --aura-navy: #193f59;
-      --aura-blue: #2e7097;
+      --aura-navy: #092b52;
+      --aura-blue: #0e4774;
+      --aura-teal: #157d88;
+      --aura-gold: #e9b92d;
+      --aura-ink: #17324d;
+      --aura-soft: #f4f8fb;
       --aura-green: #61ce70;
       --aura-border: #e1edf0;
-      --aura-shadow: 0 4px 18px rgba(25, 63, 89, 0.13);
     }
 
     body {
       font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     }
 
-    /* Aura Official Header Styles from aura-ideas.com */
-    .aura-header, .aura-header * {
-      box-sizing: border-box;
-    }
-
-    .aura-header {
+    /* =========================================================
+       AURA UNITED HEADER - Exactly matching https://www.auraideaskw.com/
+       ========================================================= */
+    .aura-united-header {
       direction: rtl;
       position: sticky;
       top: 0;
-      z-index: 99999 !important;
-      width: 100%;
-      overflow: visible !important;
-      isolation: isolate;
-      background: #fff;
-      box-shadow: var(--aura-shadow);
-      font-family: inherit;
-    }
-
-    .aura-header-motion {
-      position: relative;
-      height: 30px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(90deg, #193f59, #2e7097, #193f59);
+      z-index: 10000 !important;
+      background: linear-gradient(110deg, var(--aura-navy), #104c77);
       color: #fff;
+      box-shadow: 0 5px 22px rgba(6, 35, 65, 0.25);
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .aura-united-header * {
+      box-sizing: border-box;
+    }
+
+    .aura-united-top {
+      min-height: 40px;
+      background: rgba(3, 20, 42, 0.72);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 0 5vw;
       font-size: 13px;
+      letter-spacing: 0.1px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .aura-united-top > span {
       font-weight: 700;
-      letter-spacing: .15px;
+      color: #edf7ff;
     }
 
-    .aura-header-motion span {
-      display: inline-block;
-      animation: auraTicker 14s linear infinite;
-      white-space: nowrap;
+    .aura-united-social {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      order: 2;
     }
 
-    .aura-header-motion:before,
-    .aura-header-motion:after {
-      content: '';
-      position: absolute;
-      width: 7px;
-      height: 7px;
+    .aura-united-social a {
+      width: 27px;
+      height: 27px;
       border-radius: 50%;
-      background: var(--aura-green);
-      opacity: .9;
-      animation: auraSpark 3s ease-in-out infinite;
-    }
-
-    .aura-header-motion:before {
-      right: 11%;
-    }
-
-    .aura-header-motion:after {
-      left: 11%;
-      animation-delay: 1.3s;
-    }
-
-    .aura-header .aura-floating-book,
-    .aura-header .aura-floating-pen {
-      position: absolute;
-      z-index: 1;
-      pointer-events: none;
-      width: 52px;
-      height: 52px;
-      opacity: .16;
-      color: var(--aura-blue);
-      user-select: none;
-    }
-
-    .aura-floating-book {
-      left: 4%;
-      bottom: 17px;
-      animation: auraBook 5s ease-in-out infinite;
-    }
-
-    .aura-floating-pen {
-      right: 8%;
-      top: 57px;
-      animation: auraPen 4.5s ease-in-out infinite;
-    }
-
-    .aura-floating-pen:after {
-      content: 'فكرة تُكتب.. أثرٌ يبقى';
-      position: absolute;
-      right: 48px;
-      top: 17px;
-      width: 150px;
-      color: var(--aura-navy);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .2px;
-      white-space: nowrap;
-      opacity: .72;
-    }
-
-    .aura-floating-book svg,
-    .aura-floating-pen svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-
-    .aura-floating-book path,
-    .aura-floating-book line,
-    .aura-floating-pen path,
-    .aura-floating-pen line {
-      vector-effect: non-scaling-stroke;
-    }
-
-    @keyframes auraTicker {
-      from { transform: translateX(35vw); }
-      to { transform: translateX(-35vw); }
-    }
-
-    @keyframes auraSpark {
-      0%, 100% { transform: scale(.65); opacity: .35; }
-      50% { transform: scale(1.35); opacity: 1; }
-    }
-
-    @keyframes auraBook {
-      0%, 100% { transform: translateY(4px) rotate(-8deg); }
-      50% { transform: translateY(-7px) rotate(4deg); }
-    }
-
-    @keyframes auraPen {
-      0%, 100% { transform: translateY(-3px) rotate(18deg); }
-      50% { transform: translateY(7px) rotate(28deg); }
-    }
-
-    .aura-header-inner {
-      width: min(100% - 48px, 1400px);
-      min-height: 88px;
-      margin-inline: auto;
-      padding-block: 10px;
-      display: flex;
-      align-items: center;
-      gap: clamp(16px, 2vw, 36px);
-      position: relative;
-      z-index: 100000;
-    }
-
-    .aura-logo {
-      flex: 0 0 auto;
-      display: block;
-      width: clamp(72px, 6vw, 94px);
-      height: clamp(64px, 5.5vw, 82px);
-    }
-
-    .aura-logo img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .aura-nav {
-      flex: 1 1 auto;
-      min-width: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(12px, 1.6vw, 26px);
-      position: relative;
-      z-index: 100000;
-    }
-
-    .aura-nav > a,
-    .aura-services > summary {
-      padding: 14px 0;
-      color: var(--aura-navy) !important;
-      text-decoration: none !important;
-      white-space: nowrap;
-      cursor: pointer;
-      font-size: clamp(15px, 1.15vw, 19px);
-      font-weight: 600;
-      line-height: 1.4;
-      transition: color .2s ease;
-    }
-
-    .aura-nav > a:hover,
-    .aura-services > summary:hover {
-      color: var(--aura-green) !important;
-    }
-
-    .aura-services {
-      position: relative;
-      z-index: 100001;
-    }
-
-    .aura-services[open] {
-      z-index: 100002;
-    }
-
-    .aura-services > summary,
-    .aura-mobile > summary,
-    .aura-mobile-menu details > summary {
-      list-style: none;
-    }
-
-    .aura-services > summary::-webkit-details-marker,
-    .aura-mobile > summary::-webkit-details-marker,
-    .aura-mobile-menu details > summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .aura-services > summary:after,
-    .aura-mobile-menu details > summary:after {
-      content: '';
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      margin-right: 10px;
-      vertical-align: 3px;
-      border-right: 2px solid var(--aura-green);
-      border-bottom: 2px solid var(--aura-green);
-      transform: rotate(45deg);
-      transition: transform .25s ease, border-color .25s ease;
-    }
-
-    .aura-services[open] > summary:after,
-    .aura-mobile-menu details[open] > summary:after {
-      transform: rotate(225deg) translate(-2px, -2px);
-      border-color: var(--aura-blue);
-    }
-
-    .aura-services-menu {
-      position: absolute;
-      top: calc(100% + 5px);
-      right: 50%;
-      transform: translateX(50%);
-      z-index: 100003;
-      width: min(370px, 42vw);
-      min-width: 320px;
-      max-height: min(520px, calc(100vh - 130px));
-      overflow-y: auto;
-      padding: 12px;
-      background: #fff;
-      border: 1px solid var(--aura-border);
-      border-top: 3px solid var(--aura-green);
-      border-radius: 14px;
-      box-shadow: 0 18px 38px rgba(25, 63, 89, .22);
-    }
-
-    .aura-services-menu a {
-      display: block;
-      padding: 12px 16px;
-      border-radius: 9px;
-      color: var(--aura-navy) !important;
-      text-decoration: none !important;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.6;
-      transition: all .15s ease;
-      text-align: right;
-    }
-
-    .aura-services-menu a:hover {
-      background: linear-gradient(90deg, #f1faf3, #fff);
-      color: var(--aura-blue) !important;
-      padding-right: 21px;
-    }
-
-    .aura-request,
-    .aura-mobile-request {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex: 0 0 auto;
-      padding: 13px clamp(15px, 1.4vw, 22px);
-      border-radius: 9px;
-      background: var(--aura-blue);
-      color: #fff !important;
-      text-decoration: none !important;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .aura-united-social a:hover {
+      background: var(--aura-gold);
+      color: var(--aura-navy);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .aura-united-social svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    .aura-united-phone {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      direction: ltr;
+      order: 1;
+      transition: color 0.2s;
+    }
+
+    .aura-united-phone:hover {
+      color: var(--aura-gold);
+    }
+
+    .aura-united-nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 0 5vw;
+      position: relative;
+    }
+
+    .aura-united-logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-left: auto;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 900;
       white-space: nowrap;
-      font-size: clamp(14px, 1.05vw, 17px);
-      font-weight: 700;
-      line-height: 1.35;
-      transition: background .2s ease, color .2s ease, transform .2s ease;
+      font-size: 17px;
     }
 
-    .aura-request:hover,
-    .aura-mobile-request:hover {
-      background: var(--aura-green);
-      color: var(--aura-navy) !important;
-      transform: translateY(-1px);
+    .aura-united-logo img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 50%;
+      padding: 4px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
     }
 
-    .aura-mobile {
+    .aura-united-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin: auto;
+    }
+
+    .aura-united-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: color 0.2s, opacity 0.2s;
+    }
+
+    .aura-united-links a:hover {
+      color: var(--aura-gold);
+    }
+
+    .aura-united-services {
+      position: relative;
+      color: #fff;
+    }
+
+    .aura-united-services > summary {
+      color: #fff;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 800;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .aura-united-services > summary::-webkit-details-marker {
       display: none;
     }
 
-    @media (max-width: 1150px) and (min-width: 768px) {
-      .aura-header-inner {
-        width: min(100% - 24px, 1000px);
+    .aura-united-services > summary:after {
+      content: ' ⌄';
+      margin-right: 5px;
+      color: var(--aura-gold);
+    }
+
+    .aura-united-services[open] > summary:after {
+      content: ' ⌃';
+    }
+
+    .aura-united-services .aura-services-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 50%;
+      transform: translateX(50%);
+      width: 250px;
+      max-height: 480px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #092b52;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-top: 3px solid var(--aura-gold);
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      z-index: 10005;
+    }
+
+    .aura-united-services .aura-services-menu a {
+      display: block;
+      padding: 8px 12px;
+      color: #edf7ff;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.6;
+      text-align: right;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .aura-united-services .aura-services-menu a:hover {
+      background: rgba(233, 185, 45, 0.18);
+      color: var(--aura-gold);
+    }
+
+    .aura-united-cta {
+      background: linear-gradient(135deg, #f4cb47, var(--aura-gold)) !important;
+      color: #122c4a !important;
+      border-radius: 999px;
+      padding: 13px 20px;
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 0 7px 18px rgba(233, 185, 45, 0.23);
+      white-space: nowrap;
+      font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    }
+
+    .aura-united-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(233, 185, 45, 0.35);
+      filter: brightness(1.05);
+    }
+
+    .aura-united-menu {
+      display: none;
+      color: #fff;
+      background: transparent;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .aura-united-links {
         gap: 12px;
       }
-      .aura-nav {
-        gap: clamp(6px, 1vw, 14px);
+      .aura-united-links a {
+        font-size: 12px;
       }
-      .aura-nav > a,
-      .aura-services > summary {
-        font-size: 14px;
-        padding-block: 10px;
-      }
-      .aura-request {
-        padding: 10px 12px;
-        font-size: 13px;
+      .aura-united-nav {
+        gap: 12px;
       }
     }
 
-    @media (max-width: 767px) {
-      .aura-header-motion {
-        height: 24px;
-        font-size: 10px;
+    @media (max-width: 700px) {
+      .aura-united-top {
+        padding: 7px 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
       }
-      .aura-floating-book,
-      .aura-floating-pen {
-        width: 34px;
-        height: 34px;
-        opacity: .06;
-      }
-      .aura-floating-pen {
-        right: 2%;
-        top: 50px;
-      }
-      .aura-floating-pen:after {
-        display: none;
-      }
-      .aura-header-inner {
-        direction: ltr;
-        width: 100%;
-        min-height: 72px;
-        padding: 8px 14px;
-        gap: 10px;
-      }
-      .aura-logo {
+      .aura-united-top > span {
         order: 3;
-        width: 62px;
-        height: 56px;
-        margin-left: auto;
+        width: 100%;
+        text-align: center;
+        font-size: 11px;
       }
-      .aura-nav {
-        display: none;
-      }
-      .aura-request {
-        order: 2;
-        padding: 9px 12px;
-        font-size: 13px;
-        border-radius: 8px;
-      }
-      .aura-mobile {
+      .aura-united-social {
         order: 1;
-        display: block;
-        position: relative;
       }
-      .aura-mobile > summary {
-        display: grid;
-        place-items: center;
-        width: 42px;
-        height: 42px;
-        border: 2px solid var(--aura-blue);
-        border-radius: 9px;
-        color: var(--aura-blue);
-        cursor: pointer;
+      .aura-united-phone {
+        order: 2;
+        font-size: 12px;
       }
-      .aura-mobile > summary:before {
-        content: '☰';
-        font-size: 20px;
-        line-height: 1;
+      .aura-united-nav {
+        padding: 8px 15px;
+        min-height: 65px;
       }
-      .aura-mobile-menu {
-        position: fixed !important;
-        top: 78px;
-        left: 12px;
-        right: 12px;
-        z-index: 2147483000 !important;
-        width: auto;
-        max-height: calc(100vh - 100px);
-        overflow-y: auto;
-        padding: 12px;
-        background: #fff;
-        border: 1px solid var(--aura-border);
-        border-top: 4px solid var(--aura-green);
-        border-radius: 0 0 14px 14px;
-        box-shadow: 0 18px 42px rgba(25, 63, 89, .32);
-        direction: rtl;
-      }
-      .aura-mobile-menu > a,
-      .aura-mobile-menu > details > summary {
-        display: block;
-        width: 100%;
-        margin: 3px 0;
-        padding: 12px 14px;
-        border-radius: 8px;
-        color: var(--aura-navy) !important;
-        text-decoration: none !important;
-        text-align: right;
+      .aura-united-logo {
+        margin-left: 0;
         font-size: 15px;
-        font-weight: 600;
-        line-height: 1.5;
-        cursor: pointer;
       }
-      .aura-mobile-menu > a:hover,
-      .aura-mobile-menu > details > summary:hover {
-        background: #f1faf3;
+      .aura-united-logo img {
+        width: 43px;
+        height: 43px;
       }
-      .aura-mobile-menu > details > div {
-        padding: 4px 12px 4px 0;
-        border-right: 3px solid var(--aura-green);
-      }
-      .aura-mobile-menu > details > div a {
-        display: block;
-        margin: 4px 2px;
+      .aura-united-links {
+        display: none !important;
+        position: absolute;
+        right: 8px;
+        left: 8px;
+        top: 70px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin: 0;
         padding: 10px;
-        border-radius: 8px;
-        color: var(--aura-navy) !important;
-        text-decoration: none !important;
-        text-align: right;
-        font-size: 14px;
-        line-height: 1.5;
+        background: #092b52;
+        border-radius: 0 0 14px 14px;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+        z-index: 10001;
       }
-      .aura-mobile-menu > details > div a:hover {
-        background: #f1faf3;
-        color: var(--aura-blue) !important;
+      .aura-united-nav.is-mobile-open .aura-united-links {
+        display: flex !important;
       }
-      .aura-mobile-menu .aura-mobile-request {
-        display: flex;
+      .aura-united-nav.is-mobile-open .aura-united-menu {
+        color: #f4cb47;
+      }
+      .aura-united-links > a:not(.aura-mobile-cta),
+      .aura-united-links > .aura-united-services {
         width: 100%;
-        margin-top: 10px;
-        padding: 12px;
+        text-align: center;
+        padding: 11px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .aura-united-services > summary {
         font-size: 15px;
+      }
+      .aura-united-services .aura-services-menu {
+        position: static !important;
+        transform: none !important;
+        width: auto !important;
+        margin-top: 8px;
+        box-shadow: none;
+        border: none;
+      }
+      .aura-united-services .aura-services-menu a {
+        font-size: 13px;
         text-align: center;
       }
-    }
-
-    @media (min-width: 1101px) {
-      .aura-header-inner {
-        width: min(100% - 48px, 1450px);
-      }
-      .aura-nav {
-        gap: clamp(14px, 1.6vw, 28px);
-      }
-      .aura-nav > a,
-      .aura-services > summary {
-        font-size: clamp(16px, 1.2vw, 20px);
-        font-weight: 700;
-      }
-      .aura-request {
-        font-size: clamp(15px, 1.1vw, 18px);
-      }
-      .aura-services-menu a {
-        font-size: 17px;
+      .aura-united-menu {
+        display: block;
+        margin-right: auto;
       }
     }
 
@@ -520,131 +384,70 @@
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased selection:bg-[#61ce70]/30 selection:text-[#193f59]">
 
-  <!-- ================= AURA OFFICIAL ORIGINAL HEADER ================= -->
-  <header class="aura-header sticky top-0" id="main-header">
-    <!-- 1. Animated Ticker Bar -->
-    <div class="aura-header-motion" aria-label="رسالة أورا المتحركة">
-      <span>
-        أورا للأفكار · جودة أكاديمية · وضوح في كل خطوة · استشارة مجانية عبر واتساب (+971 58 874 0073)
-      </span>
+  <!-- ================= AURA UNITED OFFICIAL HEADER (from auraideaskw.com) ================= -->
+  <div class="aura-united-header" id="auraUnitedHeader">
+    <!-- Top Bar -->
+    <div class="aura-united-top">
+      <a class="aura-united-phone" href="tel:+971588740073">+971 58 874 0073</a>
+
+      <div class="aura-united-social">
+        <a aria-label="فيسبوك" href="https://www.facebook.com/auraideaskw1/" target="_blank" rel="noopener noreferrer" title="فيسبوك">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1Z"></path></svg>
+        </a>
+        <a aria-label="إكس" href="https://x.com/auraideas1" target="_blank" rel="noopener noreferrer" title="إكس">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4.2l3.1 4.2L16 4h3l-5.3 6.3L20 20h-4.2l-3.5-4.8L8 20H5l5.7-6.8L5 4Zm3.1 2 7.8 12h1L9.1 6h-1Z"></path></svg>
+        </a>
+        <a aria-label="إنستغرام" href="https://www.instagram.com/aura_ideas/" target="_blank" rel="noopener noreferrer" title="إنستغرام">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 12 16.5 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 12 14.5 2.5 2.5 0 0 0 12 9.5ZM17.5 6.2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"></path></svg>
+        </a>
+        <a aria-label="واتساب" href="https://wa.me/971588740073" target="_blank" rel="noopener noreferrer" title="واتساب">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a9.8 9.8 0 0 0-8.5 14.7L2 22l5.5-1.4A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 6.9 12l-.4.7.2.8-3 .8-.7-.4A8 8 0 1 1 12 4Zm-3 3.8c-.3 0-.6.1-.8.4-.3.4-.9 1-.9 2.1 0 1.2.9 2.4 1 2.6.2.2 1.8 2.9 4.5 4 .7.3 1.2.4 1.6.3.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.7-.4l-1.4-.7c-.4-.2-.6-.1-.8.2l-.5.7c-.2.2-.4.3-.7.1a5.8 5.8 0 0 1-2.7-2.4c-.2-.3 0-.5.2-.7l.4-.5c.2-.2.2-.4.1-.7l-.6-1.4c-.2-.6-.5-.8-.9-.8Z"></path></svg>
+        </a>
+      </div>
+
+      <span>خدمات أكاديمية للطلاب والباحثين في الكويت</span>
     </div>
 
-    <!-- 2. Floating Vector Book SVG -->
-    <span class="aura-floating-book" aria-hidden="true">
-      <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <path d="M10 16c10-5 18-4 25 2v35c-7-6-15-7-25-2V16Z" fill="#61ce70" fill-opacity=".3" stroke="currentColor" stroke-width="2.5" />
-        <path d="M54 16c-10-5-18-4-25 2v35c7-6 15-7 25-2V16Z" fill="#2e7097" fill-opacity=".18" stroke="currentColor" stroke-width="2.5" />
-        <path d="M16 25c6-2 11-1 16 2M16 32c6-2 11-1 16 2M48 25c-6-2-11-1-16 2M48 32c-6-2-11-1-16 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8" />
-      </svg>
-    </span>
-
-    <!-- 3. Floating Vector Pen SVG -->
-    <span class="aura-floating-pen" aria-hidden="true">
-      <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <path d="m17 48 4-13L45 11l8 8-24 24-12 5Z" fill="#2e7097" fill-opacity=".22" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
-        <path d="m38 18 8 8M21 35l8 8" stroke="currentColor" stroke-width="2.5" />
-        <path d="m17 48 3-8 5 5-8 3Z" fill="#61ce70" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-        <path d="m45 11 4-3 7 7-3 4-8-8Z" fill="#61ce70" fill-opacity=".7" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-      </svg>
-    </span>
-
-    <!-- 4. Main Inner Header Bar -->
-    <div class="aura-header-inner">
-      <!-- Mobile Navigation Trigger & Menu -->
-      <details class="aura-mobile" id="mobile-menu-details">
-        <summary aria-label="فتح القائمة"></summary>
-        <nav class="aura-mobile-menu" aria-label="قائمة الهاتف">
-          <a href="#hero" onclick="closeMobileMenu()">الرئيسية</a>
-          <a href="#about-story" onclick="closeMobileMenu()">من نحن</a>
-          <a href="#standards" onclick="closeMobileMenu()">الضمانات</a>
-
-          <!-- Mobile Services Accordion -->
-          <details>
-            <summary>خدماتنا</summary>
-            <div>
-              <a href="#quality-simulator" onclick="closeMobileMenu()">كل الخدمات</a>
-              <a href="#quality-simulator" onclick="closeMobileMenu()">أبحاث الماجستير</a>
-              <a href="#quality-simulator" onclick="closeMobileMenu()">أطروحة الدكتوراه</a>
-              <a href="#quality-simulator" onclick="closeMobileMenu()">تنسيق وتدقيق الأبحاث</a>
-              <a href="#quality-simulator" onclick="closeMobileMenu()">كتابة الأبحاث الجامعية</a>
-              <a href="#quality-simulator" onclick="closeMobileMenu()">مشروع التخرج</a>
-              <a href="#quality-simulator" onclick="closeMobileMenu()">التحليل الإحصائي</a>
-            </div>
-          </details>
-
-          <a href="#quality-simulator" onclick="closeMobileMenu()">تشكيل النصوص</a>
-          <a href="#quality-simulator" onclick="closeMobileMenu()">حساب العينة</a>
-          <a href="#about-story" onclick="closeMobileMenu()">كتبنا</a>
-          <a href="#about-story" onclick="closeMobileMenu()">المدونة</a>
-          <a href="#testimonials" onclick="closeMobileMenu()">آراء العملاء</a>
-          <a href="#contact" onclick="closeMobileMenu()">تواصل معنا</a>
-
-          <a class="aura-mobile-request" href="https://wa.me/971588740073?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A3%D9%83%D8%A7%D8%AF%D9%8A%D9%85%D9%8A%D8%A9%20%D9%85%D8%B9%20%D8%A3%D9%88%D8%B1%D8%A7%20%D9%84%D9%84%D8%A3%D9%81%D9%83%D8%A7%D8%B1" target="_blank" rel="noopener noreferrer">
-            اطلب خدمتك الآن (+971 58 874 0073)
-          </a>
-        </nav>
-      </details>
-
-      <!-- Brand Official Logo -->
-      <a class="aura-logo" href="#hero" aria-label="العودة إلى الرئيسية">
-        <img 
-          src="/aura-logo.png" 
-          onerror="this.src='https://aura-ideas.com/wp-content/uploads/2025/12/cropped-aura.png'" 
-          alt="شعار أورا للأفكار - Aura Ideas" 
-        />
+    <!-- Nav Bar -->
+    <nav class="aura-united-nav">
+      <a class="aura-united-logo" href="#hero">
+        <img alt="أورا للأفكار" src="/aura-logo-header.jpeg" onerror="this.src='/aura-logo.png'" />
+        <span>أورا للأفكار</span>
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="aura-nav" aria-label="القائمة الرئيسية">
+      <div class="aura-united-links" id="auraUnitedLinks">
         <a href="#hero">الرئيسية</a>
         <a href="#about-story">من نحن</a>
         <a href="#standards">الضمانات</a>
 
-        <!-- Services Dropdown -->
-        <details class="aura-services" id="desktop-services">
-          <summary>خدماتنا</summary>
+        <details class="aura-services aura-united-services" id="unitedServicesDetails">
+          <summary>الخدمات</summary>
           <div class="aura-services-menu">
             <a href="#quality-simulator">كل الخدمات</a>
             <a href="#quality-simulator">أبحاث الماجستير</a>
             <a href="#quality-simulator">أطروحة الدكتوراه</a>
             <a href="#quality-simulator">تنسيق وتدقيق الأبحاث</a>
+            <a href="#quality-simulator">جميع الخدمات</a>
+            <a href="#quality-simulator">إعداد الخطة البحثية</a>
             <a href="#quality-simulator">كتابة الأبحاث الجامعية</a>
-            <a href="#quality-simulator">مشروع التخرج</a>
+            <a href="#quality-simulator">كتابة أبحاث التخرج</a>
+            <a href="#quality-simulator">رسائل الماجستير والدكتوراه</a>
             <a href="#quality-simulator">التحليل الإحصائي</a>
+            <a href="#quality-simulator">إعداد الإطار النظري</a>
+            <a href="#quality-simulator">تصميم عرض تقديمي</a>
+            <a href="#quality-simulator">خدمات أكاديمية أخرى</a>
           </div>
         </details>
 
-        <a href="#quality-simulator">تشكيل النصوص</a>
-        <a href="#quality-simulator">حساب العينة</a>
         <a href="#about-story">كتبنا</a>
         <a href="#about-story">المدونة</a>
-        <a href="#testimonials">آراء العملاء</a>
         <a href="#contact">تواصل معنا</a>
-      </nav>
-
-      <!-- Right Actions: Direct Phone & WhatsApp CTA -->
-      <div class="flex items-center gap-3">
-        <a 
-          href="tel:+971588740073" 
-          class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-[#193f59] hover:text-[#2e7097] transition px-3 py-2 rounded-lg bg-slate-100 border border-slate-200"
-          dir="ltr"
-          title="اتصال هاتفي مباشر"
-        >
-          <svg class="w-3.5 h-3.5 text-[#2e7097]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          <span>+971 58 874 0073</span>
-        </a>
-
-        <a 
-          class="aura-request" 
-          href="https://wa.me/971588740073?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A3%D9%83%D8%A7%D8%AF%D9%8A%D9%85%D9%8A%D8%A9%20%D9%85%D8%B9%20%D8%A3%D9%88%D8%B1%D8%A7%20%D9%84%D9%84%D8%A3%D9%81%D9%83%D8%A7%D8%B1" 
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          اطلب خدمتك الآن
-        </a>
       </div>
-    </div>
-  </header>
+
+      <a class="aura-united-cta aura-mobile-cta" href="https://wa.me/971588740073" target="_blank" rel="noopener noreferrer">اطلب خدمتك الآن</a>
+      <button aria-controls="auraUnitedLinks" aria-expanded="false" aria-label="فتح القائمة" class="aura-united-menu" id="auraUnitedMenuBtn" type="button">☰</button>
+    </nav>
+  </div>
 
   <!-- HERO SECTION -->
   <section id="hero" class="relative pt-12 pb-20 overflow-hidden bg-gradient-to-b from-[#0e2433] via-[#112d40] to-[#0b1924] text-white">
@@ -852,10 +655,52 @@
 
   <!-- SCRIPT FOR TABS & MOBILE MENU -->
   <script>
-    function closeMobileMenu() {
-      const details = document.getElementById('mobile-menu-details');
-      if (details) details.removeAttribute('open');
-    }
+    (function() {
+      var nav = document.querySelector('.aura-united-nav');
+      var btn = document.getElementById('auraUnitedMenuBtn');
+      var links = document.getElementById('auraUnitedLinks');
+
+      if (btn && nav) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isOpen = nav.classList.toggle('is-mobile-open');
+          btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          btn.textContent = isOpen ? '✕' : '☰';
+          btn.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+        });
+      }
+
+      if (links) {
+        var navLinks = links.querySelectorAll('a');
+        navLinks.forEach(function(l) {
+          l.addEventListener('click', function() {
+            if (nav) {
+              nav.classList.remove('is-mobile-open');
+              if (btn) {
+                btn.setAttribute('aria-expanded', 'false');
+                btn.textContent = '☰';
+              }
+            }
+          });
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        if (nav && nav.classList.contains('is-mobile-open') && !nav.contains(e.target)) {
+          nav.classList.remove('is-mobile-open');
+          if (btn) {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.textContent = '☰';
+          }
+        }
+
+        // Close services details when clicked outside
+        var servicesDetails = document.getElementById('unitedServicesDetails');
+        if (servicesDetails && servicesDetails.hasAttribute('open') && !servicesDetails.contains(e.target)) {
+          servicesDetails.removeAttribute('open');
+        }
+      });
+    })();
 
     function switchTab(tabId) {
       document.getElementById('tab-plagiarism').classList.add('hidden');
@@ -872,16 +717,6 @@
       const activeBtn = document.getElementById(tabId.replace('tab-', 'btn-'));
       activeBtn.className = "px-4 py-2 rounded-xl bg-[#61ce70] text-[#0e2433] font-bold text-xs sm:text-sm transition";
     }
-
-    // Close desktop services dropdown when clicking outside
-    document.addEventListener('click', function(e) {
-      const services = document.getElementById('desktop-services');
-      if (services && services.hasAttribute('open')) {
-        if (!services.contains(e.target)) {
-          services.removeAttribute('open');
-        }
-      }
-    });
   </script>
 </body>
 </html>
