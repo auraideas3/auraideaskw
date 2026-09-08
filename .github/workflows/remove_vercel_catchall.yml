@@ -1,0 +1,41 @@
+name: Serve static reference pages directly
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/remove_vercel_catchall.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  routing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Remove catch-all rewrite
+        run: rm -f vercel.json
+      - name: Commit and push
+        run: |
+          git config user.name 'auraideas3'
+          git config user.email 'auraideas3@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet || git commit -m 'Serve static Kuwait reference pages directly'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Remove completed workflow
+        if: always()
+        run: |
+          git rm -f .github/workflows/remove_vercel_catchall.yml || true
+          git config user.name 'auraideas3'
+          git config user.email 'auraideas3@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet || git commit -m 'Remove completed routing workflow'
+          git push || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
