@@ -1,0 +1,75 @@
+name: Fix indexability and clean sitemap
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix_indexability.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Fix canonicals and rebuild sitemap
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          from urllib.parse import unquote, urlparse
+
+          root = Path('.')
+          sitemap = root / 'sitemap.xml'
+          raw = sitemap.read_text(encoding='utf-8')
+          urls = re.findall(r'<loc>(.*?)</loc>', raw, flags=re.S)
+          excluded = ('الإمارات','الإماراتي','دبي','أبوظبي','ابوظبي','الشارقة','قطر','الدوحة','الرياض','جدة')
+          kept, seen = [], set()
+          for url in urls:
+              path = unquote(urlparse(url).path)
+              if any(term in path for term in excluded):
+                  continue
+              if url not in seen:
+                  kept.append(url)
+                  seen.add(url)
+
+          tag_re = re.compile(r'<link\b[^>]*?(?:rel=["\'][^"\']*canonical[^"\']*["\'][^>]*|href=["\'][^"\']*["\'][^>]*rel=["\'][^"\']*canonical[^"\']*["\'])[^>]*>', re.I | re.S)
+          href_re = re.compile(r'href=["\'][^"\']*["\']', re.I)
+          for url in kept:
+              path = unquote(urlparse(url).path)
+              file_path = root / path.lstrip('/') / 'index.html' if path not in ('','/') else root / 'index.html'
+              if not file_path.exists():
+                  continue
+              html = file_path.read_text(encoding='utf-8', errors='ignore')
+              canonical = url.rstrip('/') + '/'
+              def repl(match):
+                  return href_re.sub('href="' + canonical + '"', match.group(0), count=1)
+              new_html, count = tag_re.subn(repl, html, count=1)
+              if count == 0 and re.search(r'</head>', html, re.I):
+                  new_html = re.sub(r'</head>', '<link rel="canonical" href="' + canonical + '" /></head>', html, count=1, flags=re.I)
+              if new_html != html:
+                  file_path.write_text(new_html, encoding='utf-8')
+
+          sitemap.write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join('<url><loc>' + u + '</loc></url>' for u in kept) + '</urlset>\n', encoding='utf-8')
+          print('retained sitemap URLs:', len(kept))
+          PY
+
+      - name: Commit fixes
+        shell: bash
+        run: |
+          git config user.name 'auraideas3'
+          git config user.email 'auraideas3@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+          else
+            git commit -m 'Fix canonical URLs and clean sitemap for Kuwait'
+            git push
+          fi
