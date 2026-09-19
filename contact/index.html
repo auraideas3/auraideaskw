@@ -52,4 +52,4 @@
   </div>
 </div>
 <script id="aura-contact-widget-js">(function(){var m=document.getElementById('aura-contact-modal'),f=document.getElementById('aura-wa-fab'),c=document.getElementById('aura-contact-close');if(!m||!f||!c)return;function close(){m.classList.remove('is-open');document.body.style.overflow='';}c.addEventListener('click',close);m.addEventListener('click',function(e){if(e.target===m)close()});document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});var seen=false;setTimeout(function(){if(!seen){m.classList.add('is-open');document.body.style.overflow='hidden';seen=true}},9000);f.addEventListener('click',function(e){e.preventDefault();m.classList.add('is-open');document.body.style.overflow='hidden';seen=true});})();</script>
-</body></html>
+<script>(function(){var b=document.querySelector(".unified-menu"),n=document.querySelector(".unified-nav");if(b&&n){b.addEventListener("click",function(){var open=n.classList.toggle("open");b.setAttribute("aria-expanded",open?"true":"false")})}})();</script></body></html>
