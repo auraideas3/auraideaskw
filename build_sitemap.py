@@ -11,6 +11,9 @@ for f in root.rglob('index.html'):
     rel = f.relative_to(root)
     if any(part in {'.git', 'node_modules'} for part in rel.parts):
         continue
+    # Keep thin archive and builder fragments out of the public index.
+    if any(part in {'author', 'category', 'tag', 'page', 'elementor-hf'} for part in rel.parts):
+        continue
     # Exclude filesystem paths produced by broken Arabic encoding conversion.
     if any(any(mark in part for mark in ('┘', '╪', '�')) for part in rel.parts):
         continue
